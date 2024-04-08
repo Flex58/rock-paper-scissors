@@ -15,7 +15,15 @@ function getComputerChoice(){
     return choice;
 }
 
-console.log(getComputerChoice());
+function getUserChoice(){
+   let choice = prompt("Rock, Paper or Scissors?");
 
+   let choiceUpper = choice.slice(0, 1);
+   choiceUpper = choiceUpper.toUpperCase();
 
+   let choiceLower = choice.slice(1);
+   choiceLower = choiceLower.toLowerCase();
+   return choiceUpper + choiceLower;
+}
+console.log(getUserChoice());
 // 0 = Rock, 1 = Paper, 2 = Scissors
