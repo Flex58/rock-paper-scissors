@@ -1,7 +1,6 @@
 // 0 = Rock, 1 = Paper, 2 = Scissors
 // 0 = tie, 1 = win, 2 = loss
 
-/* playGame(); */
 
 //gets the computers choice of either rock paper or scissors
 function getComputerChoice(){
@@ -18,17 +17,6 @@ function getComputerChoice(){
     }
     return choice;
 }
-//gets the users choice 
-/* function getUserChoice(){
-   let choice = prompt("Rock, Paper or Scissors?");
-
-   let choiceUpper = choice.slice(0, 1);
-   choiceUpper = choiceUpper.toUpperCase();
-
-   let choiceLower = choice.slice(1);
-   choiceLower = choiceLower.toLowerCase();
-   return choiceUpper + choiceLower;
-} */
 //plays a round of rps by comparing user input to computerChoice 
 function playRound(userChoice, computerChoice){
     let result;
@@ -75,27 +63,7 @@ function playRound(userChoice, computerChoice){
         }
     }
 }
-//plays a full match bo3 of rps
-/* function playGame(){
-    let userWins = 0;
-    let computerWins = 0;
-    while(userWins < 3 && computerWins < 3){
-        let result = playRound(getUserChoice(), getComputerChoice());
 
-        if (result == 1){
-            userWins++;
-        }
-        else if (result == 2){
-            computerWins++;
-        }
-    }
-    if (userWins == 3){
-        console.log("You Win!");
-    }
-    else if (computerWins == 3){
-        console.log("You Lose!");
-    }
-} */
 const rButton = document.querySelector("#rButton");
 const pButton = document.querySelector("#pButton");
 const sButton = document.querySelector("#sButton");
