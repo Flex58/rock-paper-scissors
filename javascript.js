@@ -1,6 +1,9 @@
 // 0 = Rock, 1 = Paper, 2 = Scissors
 // 0 = tie, 1 = win, 2 = loss
-
+const buttons = document.querySelectorAll("button");
+const container = document.querySelector("#container")
+let gameResult = document.createElement("div");
+container.appendChild(gameResult)
 
 //gets the computers choice of either rock paper or scissors
 function getComputerChoice(){
@@ -23,15 +26,15 @@ function playRound(userChoice, computerChoice){
     if (userChoice == "Rock"){
         switch (computerChoice){
             case "Rock":
-                console.log("Rock ties against Rock, you tie");
+                gameResult.innerText = "Rock ties against Rock, you tie";
                 result = 0;
                 return result;
             case "Paper":
-                console.log("Rock gets beaten by Paper, you lose");
+                gameResult.innerText = "Rock gets beaten by Paper, you lose"
                 result = 2;
                 return result;
             case "Scissors":
-                console.log("Rock beats Scissors, you win");
+                gameResult.innerText = "Rock beats Scissors, you win"
                 return result = 1;
         }
         return result;
@@ -64,10 +67,11 @@ function playRound(userChoice, computerChoice){
     }
 }
 
-const rButton = document.querySelector("#rButton");
-const pButton = document.querySelector("#pButton");
-const sButton = document.querySelector("#sButton");
-
-rButton.addEventListener("click", () => playRound("Rock", getComputerChoice()));
-pButton.addEventListener("click", () => playRound("Paper", getComputerChoice()));
-sButton.addEventListener("click", () => playRound("Scissors", getComputerChoice()));
+buttons.forEach((button) => {
+    let result;
+    button.addEventListener("click", () => {
+        result = playRound(button.id, getComputerChoice())
+        return result;
+    });
+    return result;
+});
