@@ -1,9 +1,14 @@
 // 0 = Rock, 1 = Paper, 2 = Scissors
 // 0 = tie, 1 = win, 2 = loss
 const buttons = document.querySelectorAll("button");
-const container = document.querySelector("#container")
-let gameResult = document.createElement("div");
+const container = document.querySelector("#container");
+const scoreContainer = document.querySelector("#score");
+const userScore = document.createElement("div");
+const computerScore = document.createElement("div");
+const gameResult = document.createElement("div");
 container.appendChild(gameResult)
+scoreContainer.appendChild(userScore)
+scoreContainer.appendChild(computerScore)
 
 //gets the computers choice of either rock paper or scissors
 function getComputerChoice(){
@@ -23,6 +28,8 @@ function getComputerChoice(){
 //plays a round of rps by comparing user input to computerChoice 
 function playRound(userChoice, computerChoice){
     let result;
+    
+    
     if (userChoice == "Rock"){
         switch (computerChoice){
             case "Rock":
@@ -42,36 +49,69 @@ function playRound(userChoice, computerChoice){
     else if (userChoice == "Paper"){
         switch (computerChoice){
             case "Rock":
-                console.log("Paper beats Rock, you win");
+               gameResult.innerText= "Paper beats Rock, you win";
                 return result = 1;
             case "Paper":
-                console.log("Paper ties against Paper, you tie");
+                gameResult.innerText = "Paper ties against Paper, you tie"
                 return result = 0;
             case "Scissors":
-                console.log("Paper gets beaten by Scissors, you lose");
+                gameResult.innerText = "Paper gets beaten by Scissors, you lose";
                 return result = 2;
         }
     }
     else if (userChoice == "Scissors"){
         switch (computerChoice){
             case "Rock":
-                console.log("Scissors gets beaten by Rock, you lose");
+                gameResult.innerText = "Scissors gets beaten by Rock, you lose";
                 return result = 2;
             case "Paper":
-                console.log("Scissors beats Paper, you win");
+                gameResult.innerText = "Scissors beats Paper, you win";
                 return result = 1;
             case "Scissors":
-                console.log("Scissors ties against Scissors, you tie");
+                gameResult.innerText = "Scissors ties against Scissors, you tie";
                 return result = 0;
         }
     }
-}
 
+
+
+}
+//Assigns buttons to user input and plays a round of rps
+//also keeps track of score and outputs a winner
 buttons.forEach((button) => {
     let result;
+    let userWins = 0;
+    let computerWins = 0;
+    userScore.innerText = "You: " + userWins;
+    computerScore.innerText = "Foe: " + computerWins;
     button.addEventListener("click", () => {
         result = playRound(button.id, getComputerChoice())
-        return result;
+        if (result == 1){
+            userWins++;
+            userScore.innerText = "You: " + userWins;
+        }
+
+        else if (result == 2){
+            computerWins++;
+            computerScore.innerText = "Foe: " + computerWins;
+        }
+
+        if (userWins == 5){
+            alert("You Win!");
+            userWins = 0;
+            computerWins = 0;
+            computerScore.innerText = "Foe: " + computerWins;
+            userScore.innerText = "You: " + userWins;
+        }
+        
+        else if (computerWins == 5){
+            alert("You Lose")
+            userWins = 0;
+            computerWins = 0;
+            computerScore.innerText = "Foe: " + computerWins;
+            userScore.innerText = "You: " + userWins;
+        }
+
     });
-    return result;
 });
+
