@@ -10,6 +10,8 @@ container.appendChild(gameResult)
 scoreContainer.appendChild(userScore)
 scoreContainer.appendChild(computerScore)
 
+playGame();
+
 //gets the computers choice of either rock paper or scissors
 function getComputerChoice(){
     let choice = Math.floor(Math.random() * 3);
@@ -78,40 +80,42 @@ function playRound(userChoice, computerChoice){
 }
 //Assigns buttons to user input and plays a round of rps
 //also keeps track of score and outputs a winner
-buttons.forEach((button) => {
+function playGame(){
     let result;
     let userWins = 0;
     let computerWins = 0;
     userScore.innerText = "You: " + userWins;
     computerScore.innerText = "Foe: " + computerWins;
-    button.addEventListener("click", () => {
-        result = playRound(button.id, getComputerChoice())
-        if (result == 1){
-            userWins++;
-            userScore.innerText = "You: " + userWins;
-        }
-
-        else if (result == 2){
-            computerWins++;
-            computerScore.innerText = "Foe: " + computerWins;
-        }
-
-        if (userWins == 5){
-            alert("You Win!");
-            userWins = 0;
-            computerWins = 0;
-            computerScore.innerText = "Foe: " + computerWins;
-            userScore.innerText = "You: " + userWins;
-        }
+    buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+            result =  playRound(button.id, getComputerChoice())
+            
+            if (result == 1){
+                userWins++;
+                userScore.innerText = "You: " + userWins;
+            }
         
-        else if (computerWins == 5){
-            alert("You Lose")
-            userWins = 0;
-            computerWins = 0;
-            computerScore.innerText = "Foe: " + computerWins;
-            userScore.innerText = "You: " + userWins;
-        }
-
+            else if (result == 2){
+                computerWins++;
+                computerScore.innerText = "Foe: " + computerWins;
+            }
+        
+            if (userWins == 5){
+                alert("You Win!");
+                userWins = 0;
+                computerWins = 0;
+                computerScore.innerText = "Foe: " + computerWins;
+                userScore.innerText = "You: " + userWins;
+            }
+            
+            else if (computerWins == 5){
+                alert("You Lose")
+                userWins = 0;
+                computerWins = 0;
+                computerScore.innerText = "Foe: " + computerWins;
+                userScore.innerText = "You: " + userWins;
+            } 
+        });
     });
-});
+}
 
